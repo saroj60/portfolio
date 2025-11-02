@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saroj Kumar Bhagat - Portfolio</title>
+    <!-- Google Fonts for better typography --><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        /* --- Base Global Styles (Default Dark Theme) --- */
+        :root {
+            --primary-color: #4A90E2; /* Bright Blue */
+            --bg-dark-primary: #0a192f; /* Dark Navy */
+            --bg-dark-secondary: #112240; /* Lighter Navy */
+            --text-light: #ccd6f6;      /* Light Grey-Blue */
+            --text-medium: #8892b0;     /* Medium Grey-Blue */
+            --text-heading: #e6f1ff;    /* Off-White */
+            --font-primary: 'Roboto', sans-serif;
+            --font-heading: 'Poppins', sans-serif;
+        }
+
+        /* --- Theme Definitions --- */
+        /* Default Blue Theme (Hero, About, Contact) */
+        body.theme-blue {
+            --primary-color: #4A90E2; /* Bright Blue */
+            --bg-dark-primary: #0a192f; /* Dark Navy */
+            --bg-dark-secondary: #112240; /* Lighter Navy */
+            --text-light: #ccd6f6;
+            --text-medium: #8892b0;
+            --text-heading: #e6f1ff;
+        }
+
+        /* Green Theme (e.g., Skills) */
+        body.theme-green {
+            --primary-color: #64ffda; /* Aqua Green */
+            --bg-dark-primary: #042f2b; /* Dark Teal */
+            --bg-dark-secondary: #084c47; /* Lighter Teal */
+            --text-light: #d6fcf8;
+            --text-medium: #a8dadc;
+            --text-heading: #e6fffd;
+        }
+
+        /* Purple Theme (e.g., Projects) */
+        body.theme-purple {
+            --primary-color: #bb86fc; /* Light Purple */
+            --bg-dark-primary: #1e113a; /* Deep Purple */
+            --bg-dark-secondary: #2f1d52; /* Medium Purple */
+            --text-light: #e0ccff;
+            --text-medium: #c0a0e0;
+            --text-heading: #f0e6ff;
+        }
+
+        /* Orange Theme (e.g., Education) */
+        body.theme-orange {
+            --primary-color: #ff9f1c; /* Bright Orange */
+            --bg-dark-primary: #3d1c00; /* Dark Brown-Orange */
+            --bg-dark-secondary: #6b3300; /* Medium Brown-Orange */
+            --text-light: #ffebcc;
+            --text-medium: #ffd18a;
+            --text-heading: #fff3e6;
+        }
+
+        /* --- General Element Styling (using CSS variables) --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--bg-dark-primary);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            transition: background-color 0.8s ease, color 0.8s ease; /* Smooth theme transitions */
+        }
+
+        section {
+            padding: 100px 10%;
+            width: 100%;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            color: var(--text-heading);
+            margin-bottom: 20px;
+            transition: color 0.8s ease;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        p {
+            color: var(--text-medium);
+            margin-bottom: 15px;
+            transition: color 0.8s ease;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--text-heading); /* Hover color should match heading in any theme */
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background: rgba(10, 25, 47, 0.85); /* Fixed background for header */
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--bg-dark-secondary);
+            transition: background-color 0.8s ease, border-color 0.8s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 10%;
+            width: 100%;
+            position: relative; /* For mobile menu positioning */
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color); /* Changed from --text-heading */
+            transition: color 0.8s ease; /* Added transition */
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            transition: transform 0.3s ease-in-out; /* For mobile slide-in */
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            font-size: 1rem;
+            font-weight: 400;
+            padding: 5px; /* Add padding for easier mobile tapping */
+            color: var(--text-light); /* Ensure nav links adapt */
+        }
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none; /* Hidden on desktop */
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1002;
+            color: var(--text-heading);
+        }
+        
+        /* --- Hero Section --- */
+        #home {
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        #particle-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-content {
+            z-index: 2;
+            position: relative;
+            padding: 0 20px; /* Add padding for small screens */
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            /* color: #fff; /* Always white for hero heading */
+            
+            /* New multi-color gradient style */
+            background: linear-gradient(90deg, #4A90E2, #64ffda, #bb86fc, #ff9f1c, #4A90E2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent; /* Fallback for non-webkit */
+            
+            /* Animate the gradient */
+            background-size: 200% auto;
+            animation: gradient-animate 10s linear infinite;
+
+            text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3); /* Soft shadow for depth */
+            /* transition: all 0.8s ease; */ /* Animation handles transition */
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+
+        .social-links a {
+            font-size: 2rem;
+            margin: 0 15px;
+            color: var(--text-light);
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Scroll Down Arrow */
+        .scroll-down-arrow {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            color: var(--text-light);
+            z-index: 3;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-20px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+        
+        /* Added animation for the gradient text */
+        @keyframes gradient-animate {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+
+        /* --- About Section --- */
+        #about {
+            text-align: center;
+        }
+        .career-objective {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--text-light);
+        }
+
+        /* --- Skills Section --- */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .skill-category {
+            background: var(--bg-dark-secondary);
+            padding: 20px;
+            border-radius: 8px;
+            flex-basis: 300px;
+            flex-grow: 1;
+            transition: background-color 0.8s ease;
+        }
+
+        .skill-category h3 {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            transition: border-color 0.8s ease;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background: var(--bg-dark-primary); /* Background adapts to current theme */
+            color: var(--text-light);
+            padding: 8px 12px;
+            margin: 5px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .skill-tag:hover {
+            transform: scale(1.1);
+            background-color: var(--primary-color); /* Hover color from current theme */
+            color: var(--text-heading);
+        }
+
+        /* --- Projects Section --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background: var(--bg-dark-secondary);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.8s ease;
+            position: relative; /* For link positioning */
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px var(--primary-color-shadow, rgba(74, 144, 226, 0.2)); /* Shadow uses primary color */
+        }
+
+        .project-card h3 {
+            color: var(--text-heading);
+            padding-right: 40px; /* Space for the icon */
+        }
+
+        .project-tech {
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 15px;
+            transition: color 0.8s ease;
+        }
+
+        .project-link {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            font-size: 1.5rem;
+            color: var(--text-medium);
+        }
+        
+        .project-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- Education & Certifications --- */
+        #education {
+            /* Background will be set by JS theme now */
+        }
+
+        .education-container {
+            margin-bottom: 40px;
+        }
+
+        .education-item {
+            background: var(--bg-dark-primary);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 5px solid var(--primary-color);
+            transition: background-color 0.8s ease, border-color 0.8s ease;
+        }
+
+        .education-item h3 {
+            margin-bottom: 5px;
+        }
+
+        .certifications-container h3 {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .certifications-container ul {
+            list-style: none;
+            text-align: center;
+            padding: 0; /* Remove default padding */
+        }
+
+        .certifications-container li {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .certifications-container li i {
+            margin-right: 10px;
+            color: var(--primary-color);
+            transition: color 0.8s ease;
+        }
+
+        /* --- Footer --- */
+        #contact {
+            text-align: center;
+            border-top: 1px solid var(--bg-dark-secondary);
+            transition: background-color 0.8s ease, border-color 0.8s ease;
+        }
+
+        .copyright {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: var(--text-medium);
+        }
+
+        /* --- Scroll Fade-in Animation --- */
+        .animated-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .animated-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            nav {
+                /* On mobile, allow space for logo and toggle */
+                flex-direction: row; 
+                justify-content: space-between;
+                padding: 1rem 5%;
+            }
+            
+            nav ul {
+                /* Mobile Menu Styles */
+                position: fixed;
+                top: 0;
+                right: 0;
+                height: 100vh;
+                width: 60%;
+                max-width: 300px;
+                background: var(--bg-dark-secondary);
+                flex-direction: column;
+                justify-content: center; /* Center links vertically */
+                align-items: center;
+                padding: 0;
+                transform: translateX(100%); /* Start off-screen */
+                box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+                z-index: 1001;
+                transition: transform 0.3s ease-in-out, background-color 0.8s ease;
+            }
+
+            nav ul.active {
+                transform: translateX(0); /* Slide in */
+            }
+
+            nav ul li {
+                margin: 1.5rem 0; /* Space out links vertically */
+            }
+            
+            nav ul li a {
+                font-size: 1.2rem;
+            }
+
+            /* Show Hamburger */
+            .menu-toggle {
+                display: block;
+            }
+
+            section {
+                padding: 60px 5%;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .social-links a {
+                font-size: 1.8rem;
+                margin: 0 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav .logo {
+                font-size: 1.3rem;
+            }
+            nav ul li a {
+                font-size: 1.1rem; /* Adjusted from 0.9rem */
+            }
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body class="theme-blue"> <!-- Default theme class --><!-- Header & Navigation --><header>
+        <nav>
+            <div class="logo">Saroj Kumar Bhagat</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section with Canvas --><section id="home" data-theme="theme-blue"> <!-- Section with theme-data attribute --><canvas id="particle-canvas"></canvas>
+        <div class="hero-content">
+            <h1>Saroj Kumar Bhagat</h1>
+            <p>B-Tech CSE | Software Developer</p>
+            <div class="social-links">
+                <a href="https://github.com/saroj60" target="_blank" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/sarojbhagat666" target="_blank" aria-label="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:sarojbhagat666@gmail.com" aria-label="Email Me"><i class="fas fa-envelope"></i></a>
+                <a href="tel:+9779815769007" aria-label="Call Me"><i class="fas fa-phone"></i></a>
+            </div>
+        </div>
+        <a href="#about" class="scroll-down-arrow" aria-label="Scroll to About section">
+            <i class="fas fa-chevron-down"></i>
+        </a>
+    </section>
+
+    <!-- About Section --><section id="about" class="animated-section" data-theme="theme-blue">
+        <h2>About Me</h2>
+        <p class="career-objective">
+            An energetic and dedicated team player aiming to contribute at full potential in the field of Software
+            Development, its methodology and AI.
+        </p>
+    </section>
+
+    <!-- Skills Section --><section id="skills" class="animated-section" data-theme="theme-green">
+        <h2>My Skills</h2>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3>Languages</h3>
+                <span class="skill-tag">C/C++</span>
+                <span class="skill-tag">Java</span>
+                <span class="skill-tag">JavaScript</span>
+            </div>
+            <div class="skill-category">
+                <h3>Databases</h3>
+                <span class="skill-tag">MySQL</span>
+                <span class="skill-tag">MongoDB</span>
+            </div>
+            <div class="skill-category">
+                <h3>Technologies & Frameworks</h3>
+                <span class="skill-tag">React Js</span>
+                <span class="skill-tag">Node Js</span>
+                <span class="skill-tag">Spring Boot</span>
+                <span class="skill-tag">HTML</span>
+                <span class="skill-tag">CSS</span>
+                <span class="skill-tag">Bootstrap</span>
+                <span class="skill-tag">JUnit</span>
+            </div>
+            <div class="skill-category">
+                <h3>Developer Tools</h3>
+                <span class="skill-tag">Github</span>
+                <span class="skill-tag">Figma</span>
+                <span class="skill-tag">Docker</span>
+            </div>
+             <div class="skill-category">
+                <h3>Core Concepts</h3>
+                <span class="skill-tag">Data Structures</span>
+                <span class="skill-tag">Algorithms Analysis</span>
+                <span class="skill-tag">Database System</span>
+                <span class="skill-tag">Software Engineering</span>
+                <span class="skill-tag">Operating System</span>
+                <span class="skill-tag">Machine Learning</span>
+            </div>
+            <div class="skill-category">
+                <h3>Soft Skills</h3>
+                <span class="skill-tag">Collaborative Mindset</span>
+                <span class="skill-tag">Clear Communication</span>
+                <span class="skill-tag">Critical Analysis</span>
+                <span class="skill-tag">Quick Adaptation</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section --><section id="projects" class="animated-section" data-theme="theme-purple">
+        <h2>My Projects</h2>
+        <div class="project-grid">
+            
+            <div class="project-card">
+                <h3>Utility Billing Management System</h3>
+                <p class="project-tech">HTML | CSS | React Js | Node Js | Mongo DB | Docker</p>
+                <p>A comprehensive utility billing management system to handle bills for electricity, water, gas and tax on a monthly basis.</p>
+                <a href="https://github.com/saroj60" target="_blank" class="project-link" aria-label="View Project on GitHub"><i class="fab fa-github"></i></a>
+            </div>
+
+            <div class="project-card">
+                <h3>Crop Recommendation System</h3>
+                <p class="project-tech">Machine Learning | Random Forest</p>
+                <p>A system that uses ML to suggest optimal crops based on soil conditions (pH, N, P, K) for improved agricultural productivity.</p>
+                <a href="https://github.com/saroj60" target="_blank" class="project-link" aria-label="View Project on GitHub"><i class="fab fa-github"></i></a>
+            </div>
+
+            <div class="project-card">
+                <h3>BookGlance</h3>
+                <p class="project-tech">HTML | CSS | React Js | Google Books API</p>
+                <p>Get instant book details, summaries, reviews, and ratings with ease using the Google Books API and a dynamic, responsive UI.</p>
+                <a href="https://github.com/saroj60" target="_blank" class="project-link" aria-label="View Project on GitHub"><i class="fab fa-github"></i></a>
+            </div>
+
+            <div class="project-card">
+                <h3>Bank Management System</h3>
+                <p class="project-tech">C++ | File Handling | OOP</p>
+                <p>A console-based bank management system using C++ and .dat files for persistent data storage of all core banking operations.</p>
+                <a href="https://github.com/saroj60" target="_blank" class="project-link" aria-label="View Project on GitHub"><i class="fab fa-github"></i></a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Education & Certifications --><section id="education" class="animated-section" data-theme="theme-orange">
+        <h2>Education & Certifications</h2>
+        <div class="education-container">
+            <div class="education-item">
+                <h3>B.Tech CSE</h3>
+                <p>Amrita School of Computing, Chennai (2021-2025) | CGPA: 6.6</p>
+            </div>
+            <div class="education-item">
+                <h3>Grade 12</h3>
+                <p>Shikshadeep higher Secondary School, Biratnagar (2018-2020) | 78.76%</p>
+            </div>
+            <div class="education-item">
+                <h3>Grade 10</h3>
+                <p>Shree Ram Dayal Ma. Vi. Shakuwa Kanchandaha (2017-2018) | 73%</p>
+            </div>
+        </div>
+        
+        <div class="certifications-container">
+            <h3>Certifications</h3>
+            <ul>
+                <li><i class="fas fa-certificate"></i> Supervised machine learning: Classification and Regression</li>
+                <li><i class="fas fa-certificate"></i> MERN Stack Fundamentals</li>
+                <li><i class="fas fa-certificate"></i> Software Development Lifecycle Fundamentals</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Contact Footer --><footer id="contact" class="animated-section" data-theme="theme-blue">
+        <h2>Get In Touch</h2>
+        <p>Feel free to reach out for collaborations or just a friendly chat!</p>
+        <div class="social-links">
+            <a href="https://github.com/saroj60" target="_blank" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/sarojbhagat666" target="_blank" aria-label="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:sarojbhagat666@gmail.com" aria-label="Email Me"><i class="fas fa-envelope"></i></a>
+            <a href="tel:+9779815769007" aria-label="Call Me"><i class="fas fa-phone"></i></a>
+        </div>
+        <p class="copyright">© 2025 Saroj Kumar Bhagat. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // --- Mobile Menu Toggle ---
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const navLinksList = document.querySelectorAll('.nav-links li a');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            // Toggle hamburger icon to 'X'
+            const icon = menuToggle.querySelector('i');
+            if (icon.classList.contains('fa-bars')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close menu when a link is clicked
+        navLinksList.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    const icon = menuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+
+        // --- Scroll Fade-in Animation ---
+        const animatedSections = document.querySelectorAll('.animated-section');
+
+        const observerOptions = {
+            root: null, // observes intersections relative to the viewport
+            rootMargin: '0px',
+            threshold: 0.15 // 15% of the item must be visible to trigger
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // observer.unobserve(entry.target); // Optional: uncomment if you only want it to animate once
+                }
+            });
+        }, observerOptions);
+
+        animatedSections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // --- Dynamic Theme Changer ---
+        const sections = document.querySelectorAll('section[data-theme]');
+        const body = document.body;
+
+        const themeObserverOptions = {
+            root: null,
+            rootMargin: '-50% 0px -50% 0px', // When the middle of the viewport enters the section
+            threshold: 0 // As soon as the middle passes, it counts
+        };
+
+        const themeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const theme = entry.target.dataset.theme;
+                    // Remove all existing theme classes
+                    body.className = body.className.split(' ').filter(c => !c.startsWith('theme-')).join(' ');
+                    // Add the new theme class
+                    body.classList.add(theme);
+                }
+            });
+        }, themeObserverOptions);
+
+        sections.forEach(section => {
+            themeObserver.observe(section);
+        });
+
+
+        // --- Particle Canvas Script ---
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particlesArray = [];
+        let currentParticleColor = '#4A90E2'; // Initial default
+        let currentLineColor = '#112240'; // Initial default
+
+        const mouse = {
+            x: null,
+            y: null,
+            radius: 120
+        };
+
+        window.addEventListener('mousemove', function(event) {
+            mouse.x = event.x;
+            mouse.y = event.y;
+        });
+
+        window.addEventListener('mouseout', function() {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        class Particle {
+            constructor(x, y, directionX, directionY, size) {
+                this.x = x;
+                this.y = y;
+                this.directionX = directionX;
+                this.directionY = directionY;
+                this.size = size;
+                this.baseSize = size;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = currentParticleColor; // Use dynamic color
+                ctx.fill();
+            }
+
+            update() {
+                if (this.x > canvas.width + this.size) this.x = -this.size;
+                if (this.x < -this.size) this.x = canvas.width + this.size;
+                if (this.y > canvas.height + this.size) this.y = -this.size;
+                if (this.y < -this.size) this.y = canvas.height + this.size;
+                
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < mouse.radius + this.size) {
+                    if (mouse.x < this.x && this.x < canvas.width - this.size * 10) { this.x += 5; }
+                    if (mouse.x > this.x && this.x > this.size * 10) { this.x -= 5; }
+                    if (mouse.y < this.y && this.y < canvas.height - this.size * 10) { this.y += 5; }
+                    if (mouse.y > this.y && this.y > this.size * 10) { this.y -= 5; }
+                    this.size = this.baseSize * 2.5;
+                } else {
+                    if (this.size > this.baseSize) { this.size -= 0.1; }
+                }
+                if (this.size < this.baseSize) { this.size = this.baseSize; }
+
+                this.x += this.directionX;
+                this.y += this.directionY;
+                this.draw();
+            }
+        }
+
+        function init() {
+            particlesArray = [];
+            let numberOfParticles = (canvas.height * canvas.width) / 9000;
+            if (numberOfParticles > 150) numberOfParticles = 150;
+
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 1.5) + 1;
+                let x = (Math.random() * canvas.width);
+                let y = (Math.random() * canvas.height);
+                let directionX = (Math.random() * 0.4) - 0.2;
+                let directionY = (Math.random() * 0.4) - 0.2;
+                particlesArray.push(new Particle(x, y, directionX, directionY, size));
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Update particle and line colors based on current theme
+            currentParticleColor = getComputedStyle(body).getPropertyValue('--primary-color');
+            const bgSecondary = getComputedStyle(body).getPropertyValue('--bg-dark-secondary');
+            currentLineColor = `rgba(${parseInt(bgSecondary.slice(1,3), 16)}, ${parseInt(bgSecondary.slice(3,5), 16)}, ${parseInt(bgSecondary.slice(5,7), 16)}, 0.8)`;
+
+
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+            }
+            connect();
+        }
+
+        function connect() {
+            let opacityValue = 1;
+            for (let a = 0; a < particlesArray.length; a++) {
+                for (let b = a + 1; b < particlesArray.length; b++) {
+                    let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) +
+                                   ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+                    
+                    let maxDistance = (canvas.width / 10) * (canvas.height / 10);
+                    if (distance < maxDistance) {
+                        opacityValue = 1 - (distance / (maxDistance * 0.8));
+                        if (opacityValue < 0) opacityValue = 0;
+                        
+                        ctx.strokeStyle = currentLineColor; // Use dynamic line color
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                        ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        let resizeTimer;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                mouse.radius = 120;
+                init();
+            }, 250);
+        });
+
+        init();
+        animate();
+
+    </script>
+</body>
+</html>
+
+
+
